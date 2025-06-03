@@ -428,6 +428,7 @@ main#gallery {
   cursor: not-allowed;
 }
 
+
 @media (max-width: 768px) {
   .footer-links {
     flex-direction: column;
