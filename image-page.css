@@ -53,6 +53,12 @@
   justify-content: center;
 }
 
+/* Apply flex and center alignment to the text span */
+.action-button span {
+    display: flex;
+    align-items: center;
+}
+
 .action-button svg, .action-button span, .action-button span img {
   vertical-align: middle;
 }
