@@ -58,6 +58,7 @@ function showRandomRelatedImages(allCards, currentCard) {
     const image = card.getAttribute('data-image');
     
     const cardElement = document.createElement('div');
+    cardElement.className = 'card';
     cardElement.innerHTML = `
       <a href="image-page.html?id=${encodeURIComponent(title)}">
         <img src="${image}" alt="${title}">
