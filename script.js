@@ -1,10 +1,10 @@
-// Prevent script execution on image-page.html
+// Prevent script execution of main gallery/modal logic on image-page.html
 if (window.location.pathname.includes('image-page.html')) {
-    // Stop script execution
-    throw new Error('Script execution stopped for image page.');
+    // Stop script execution for main gallery/modal logic
+    throw new Error('Main script execution stopped for image page.');
 }
 
-// ==================== МОДАЛЬНОЕ ОКНО ====================
+// ==================== МОДАЛЬНОЕ ОКНО (Main Image Modal - Should only run on index.html) ====================
 // This code should only run on the index.html page
 if (window.location.pathname.endsWith('/') || window.location.pathname.endsWith('/index.html')) {
 
@@ -209,8 +209,8 @@ if (window.location.pathname.endsWith('/') || window.location.pathname.endsWith(
   }
 }
 
-// Код ниже выполняется на ВСЕХ страницах
 // ==================== УСЛОВИЯ ПОЛЬЗОВАНИЯ ====================
+// This code runs on ALL pages where script.js is included
 document.getElementById("termsBtn").addEventListener("click", () => {
   document.getElementById("termsModal").classList.add("show");
 });
