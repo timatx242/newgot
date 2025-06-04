@@ -236,10 +236,10 @@ fetch("https://script.google.com/macros/s/AKfycbysxY9hP1_gHHiVZNdZ3p3vmXJj79nfJ6
       }
     });
 
-    // Открыть модальное окно если есть хэш в URL
+    // Открыть модальное окно если есть хэш в URL, но только на главной странице
     const urlHash = decodeURIComponent(location.hash.slice(1)).replace(/-/g, ' ').toLowerCase();
     const targetCard = [...allCards].find(card => card.getAttribute("data-title").toLowerCase() === urlHash);
-    // Add a check to ensure this only runs on index.html
+    // Ensure this only runs on index.html and not on image-page.html
     if ((window.location.pathname.endsWith('/') || window.location.pathname.endsWith('/index.html')) && targetCard) {
         targetCard.click();
     }
