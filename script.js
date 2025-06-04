@@ -18,12 +18,17 @@ if (searchForm) {
 // Функция для перенаправления на главную страницу с параметром поиска
 function redirectToSearchPage() {
   const query = searchInput.value.trim();
-  const baseUrl = window.location.origin + '/index.html';
+  // Always redirect to index.html within the /newgot/ subdirectory
+  const baseUrl = window.location.origin + '/newgot/index.html';
   const searchParams = new URLSearchParams();
   if (query) {
     searchParams.set('search', query);
+  } else {
+    searchParams.delete('search');
   }
+  // Construct the new URL
   const newUrl = `${baseUrl}${searchParams.toString() ? '?' + searchParams.toString() : ''}`;
+
   window.location.href = newUrl; // Перенаправляем пользователя
 }
 
