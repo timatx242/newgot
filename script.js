@@ -239,7 +239,10 @@ fetch("https://script.google.com/macros/s/AKfycbysxY9hP1_gHHiVZNdZ3p3vmXJj79nfJ6
     // Открыть модальное окно если есть хэш в URL
     const urlHash = decodeURIComponent(location.hash.slice(1)).replace(/-/g, ' ').toLowerCase();
     const targetCard = [...allCards].find(card => card.getAttribute("data-title").toLowerCase() === urlHash);
-    if (targetCard) targetCard.click();
+    // Add a check to ensure this only runs on index.html
+    if ((window.location.pathname.endsWith('/') || window.location.pathname.endsWith('/index.html')) && targetCard) {
+        targetCard.click();
+    }
   });
 
 // ==================== ОТКРЫТИЕ КАРТОЧКИ ПО ЯКОРЮ ====================
@@ -248,12 +251,9 @@ window.addEventListener('DOMContentLoaded', () => {
   if (!hash) return;
 
   const cards = document.querySelectorAll('.card');
-  for (const card of cards) {
-    const title = card.getAttribute('data-title') || '';
-    const anchor = title.replace(/\s+/g, '-');
-    if (anchor === hash) {
-      card.click();
-      break;
-    }
+  // Add a check to ensure this only runs on index.html
+  if (window.location.pathname.endsWith('/') || window.location.pathname.endsWith('/index.html')) {
+      const targetCard = [...cards].find(card => card.getAttribute("data-title").toLowerCase() === hash.replace(/-/g, ' ').toLowerCase());
+      if (targetCard) targetCard.click();
   }
 });
