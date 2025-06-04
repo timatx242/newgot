@@ -1,10 +1,3 @@
-// Prevent script execution on image-page.html
-if (window.location.pathname.includes('image-page.html')) {
-    // Stop script execution
-    throw new Error('Script execution stopped for image page.');
-}
-
-
 // ==================== ПОИСК ====================
 const searchInput = document.getElementById('searchInput');
 const searchForm = document.querySelector('.search-wrapper');
