@@ -170,6 +170,15 @@ document.getElementById("termsModal").addEventListener("click", (e) => {
   }
 });
 
+// Prevent pull-to-refresh when scrolling inside the modal content on mobile devices
+const termsModalContent = document.querySelector("#termsModal .modal-content");
+if (termsModalContent) {
+  termsModalContent.addEventListener('touchmove', function(e) {
+    // Prevent default behavior to stop pull-to-refresh
+    e.preventDefault();
+  }, { passive: false }); // Use passive: false to allow preventDefault()
+}
+
 // ==================== ЗАЩИТА ОТ ПРОСМОТРА КОДА ====================
 /*
 document.addEventListener('contextmenu', e => e.preventDefault());
