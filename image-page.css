@@ -89,7 +89,7 @@
   gap: 16px;
 }
 
-.related-grid .card {
+.related-grid > div {
   aspect-ratio: 1;
   border-radius: 8px;
   overflow: hidden;
@@ -97,11 +97,11 @@
   transition: transform 0.2s ease;
 }
 
-.related-grid .card:hover {
+.related-grid > div:hover {
   transform: scale(1.05);
 }
 
-.related-grid .card img {
+.related-grid > div img {
   width: 100%;
   height: 100%;
   object-fit: cover;
