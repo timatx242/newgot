@@ -49,6 +49,12 @@
   transition: all 0.2s ease;
   text-decoration: none;
   text-align: center;
+  min-width: 160px;
+  justify-content: center;
+}
+
+.action-button svg, .action-button span, .action-button span img {
+  vertical-align: middle;
 }
 
 .share-button {
