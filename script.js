@@ -1,3 +1,9 @@
+// Prevent script execution on image-page.html
+if (window.location.pathname.includes('image-page.html')) {
+    // Stop script execution
+    throw new Error('Script execution stopped for image page.');
+}
+
 // ==================== МОДАЛЬНОЕ ОКНО ====================
 // This code should only run on the index.html page
 if (window.location.pathname.endsWith('/') || window.location.pathname.endsWith('/index.html')) {
