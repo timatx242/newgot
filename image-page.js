@@ -1,6 +1,14 @@
-// Получение параметров из URL
-const urlParams = new URLSearchParams(window.location.search);
-const imageId = urlParams.get('id');
+// Get image slug from URL path
+const pathSegments = window.location.pathname.split('/');
+let imageSlug = '';
+const imagePageIndex = pathSegments.indexOf('image-page.html');
+if (imagePageIndex !== -1 && imagePageIndex + 1 < pathSegments.length) {
+    // The slug is the segment immediately after 'image-page.html'
+    imageSlug = pathSegments[imagePageIndex + 1];
+}
+
+// Convert slug back to title format (replace hyphens with spaces)
+const imageTitleFromSlug = decodeURIComponent(imageSlug.replace(/-/g, ' '));
 
 // Загрузка данных изображения
 document.addEventListener('DOMContentLoaded', async () => {
@@ -11,10 +19,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   const doc = parser.parseFromString(text, 'text/html');
   const cards = doc.querySelectorAll('.card');
 
-  // Находим нужную карточку
+  // Находим нужную карточку по заголовку (извлеченному из slug)
   const currentCard = Array.from(cards).find(card => {
     const title = card.getAttribute('data-title');
-    return title === decodeURIComponent(imageId);
+    return title.toLowerCase() === imageTitleFromSlug.toLowerCase();
   });
 
   if (currentCard) {
@@ -56,16 +64,23 @@ function showRandomRelatedImages(allCards, currentCard) {
   selected.forEach(card => {
     const title = card.getAttribute('data-title');
     const image = card.getAttribute('data-image');
+    const slug = title.toLowerCase().replace(/\s+/g, '-'); // Generate slug for related images
     
     const cardElement = document.createElement('div');
     cardElement.className = 'card';
     cardElement.innerHTML = `
-      <a href="image-page.html?id=${encodeURIComponent(title)}">
+      <a href="image-page.html/${encodeURIComponent(slug)}/">
         <img src="${image}" alt="${title}">
       </a>
     `;
     
     relatedGrid.appendChild(cardElement);
+  });
+  
+  // Remove click listeners from related image cards to prevent modal from opening
+  relatedGrid.querySelectorAll('.card').forEach(card => {
+      const newCard = card.cloneNode(true);
+      card.parentNode.replaceChild(newCard, card);
   });
 }
 
