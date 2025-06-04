@@ -1,4 +1,7 @@
 // ==================== МОДАЛЬНОЕ ОКНО ====================
+// This code should only run on the index.html page
+if (window.location.pathname.endsWith('/') || window.location.pathname.endsWith('/index.html')) {
+
 const modal = document.getElementById('modal');
 const modalImage = document.getElementById('modalImage');
 const modalTitle = document.getElementById('modalTitle');
@@ -45,6 +48,8 @@ modal.addEventListener('click', (e) => {
     history.replaceState(null, "", location.pathname);
   }
 });
+
+}
 
 // ==================== ПОИСК ====================
 const searchInput = document.getElementById('searchInput');
