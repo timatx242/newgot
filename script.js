@@ -1,55 +1,9 @@
-// ==================== МОДАЛЬНОЕ ОКНО (Main Image Modal - Should only run on index.html) ====================
-// This code should only run on the index.html page
-if (window.location.pathname.endsWith('/') || window.location.pathname.endsWith('/index.html')) {
-
-const modal = document.getElementById('modal');
-const modalImage = document.getElementById('modalImage');
-const modalTitle = document.getElementById('modalTitle');
-const modalDescription = document.getElementById('modalDescription');
-const downloadBtn = document.getElementById('downloadBtn');
-const closeModal = document.getElementById('closeModal');
-
-// Обработка клика по карточке
-document.querySelectorAll('.card').forEach(card => {
-  card.addEventListener('click', () => {
-    const image = card.getAttribute('data-image');
-    const title = card.getAttribute('data-title');
-    const description = card.getAttribute('data-description');
-    const pdf = card.getAttribute('data-pdf');
-
-    modalImage.src = image;
-    modalTitle.textContent = title;
-    modalDescription.textContent = description;
-
-    if (pdf && pdf !== '#') {
-      downloadBtn.setAttribute('href', pdf);
-      downloadBtn.setAttribute('download', '');
-    } else {
-      downloadBtn.setAttribute('href', '#');
-      downloadBtn.removeAttribute('download');
-    }
-
-    modal.classList.add('show');
-    const hash = title.replace(/\s+/g, '-');
-    history.replaceState(null, "", `#${hash}`);
-  });
-});
-
-// Закрытие модального окна по кнопке
-closeModal.addEventListener('click', () => {
-  modal.classList.remove('show');
-  history.replaceState(null, "", location.pathname);
-});
-
-// Закрытие модального окна по клику вне его области
-modal.addEventListener('click', (e) => {
-  if (e.target === modal) {
-    modal.classList.remove('show');
-    history.replaceState(null, "", location.pathname);
-  }
-});
-
+// Prevent script execution on image-page.html
+if (window.location.pathname.includes('image-page.html')) {
+    // Stop script execution
+    throw new Error('Script execution stopped for image page.');
 }
+
 
 // ==================== ПОИСК ====================
 const searchInput = document.getElementById('searchInput');
@@ -203,8 +157,8 @@ if (window.location.pathname.endsWith('/') || window.location.pathname.endsWith(
   }
 }
 
+// Код ниже выполняется на ВСЕХ страницах
 // ==================== УСЛОВИЯ ПОЛЬЗОВАНИЯ ====================
-// This code runs on ALL pages where script.js is included
 document.getElementById("termsBtn").addEventListener("click", () => {
   document.getElementById("termsModal").classList.add("show");
 });
