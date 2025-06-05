@@ -1,0 +1,153 @@
+/* Стили для страницы изображения */
+.image-page {
+  padding-top: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px 40px;
+}
+
+.image-container {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  margin-bottom: 40px;
+  box-shadow: none;
+}
+
+.image-container img {
+  width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 0;
+  margin-bottom: 20px;
+}
+
+.image-container h1 {
+  font-size: 24px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #333;
+}
+
+/* Кнопки действий */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 30px 0;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  text-align: center;
+  min-width: 160px;
+  justify-content: center;
+}
+
+/* Apply flex and center alignment to the text span */
+.action-button span {
+    display: flex;
+    align-items: center;
+    transform: translateY(1px);
+}
+
+.action-button svg, .action-button span, .action-button span img {
+  vertical-align: middle;
+}
+
+.share-button {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+}
+
+.share-button:hover {
+  background-color: #0d47a1;
+}
+
+.download-button {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+}
+
+.download-button:hover {
+  background-color: #0d47a1;
+}
+
+/* Секция похожих изображений */
+.related-images {
+  margin-top: 20px;
+}
+
+.related-images h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+.related-grid > div {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.related-grid > div:hover {
+  transform: scale(1.05);
+}
+
+.related-grid > div img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+  .related-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .image-page {
+    padding: 70px 12px 20px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .action-button {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+
+  .related-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Подвал */
+/* Удалены дублирующиеся стили подвала, используются стили из style.css */ 
